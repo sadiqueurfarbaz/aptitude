@@ -65,7 +65,7 @@
                                             <div class="admin-vertical-menu">
                                                 <a href="#" class="admin-vertical-menu-title">Home</a>
                                                 <a href="#" id="question" onclick="homeOptionBtnClick(this)">Add Question</a>
-                                                <a href="#">Edit Question</a>
+                                                <a href="#" id="question\edit" onclick="homeOptionBtnClick(this)"">Edit Question</a>
                                                 <a href="#">Delete</a>
                                                 <a href="#">View Users</a>
                                                 <a href="#">View Test stats</a>
@@ -98,5 +98,6 @@
 <!--===============================================================================================-->
 	<script src="resources/js/tplmain.js"></script>
         <script src="resources/js/utils.js"></script>
+        <script src="resources/js/admin.js"></script>
 
 </html>

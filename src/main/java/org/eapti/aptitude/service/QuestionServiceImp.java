@@ -53,5 +53,10 @@ public class QuestionServiceImp implements QuestionService{
     public Question getQuestionByModuleId(int moduleId) {
        return questionDao.getQuestionByModuleId(moduleId);
     }
+
+    @Override
+    public List<Question> getAllQuestionByModule(int moduleId) {
+        return questionDao.getAllQuestionByModule(moduleId);
+    }
     
 }

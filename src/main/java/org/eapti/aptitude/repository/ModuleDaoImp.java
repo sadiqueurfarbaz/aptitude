@@ -19,10 +19,10 @@ public class ModuleDaoImp extends Dao<Integer, Module> implements ModuleDao {
 
     @Override
     public List<Module> findAll() {
-        List<Module> modules;
-        getSession().beginTransaction();
+        List<Module> modules;getSession().beginTransaction();
         modules=super.findAll();
         getSession().getTransaction().commit();
+        
         return modules;
     }
 

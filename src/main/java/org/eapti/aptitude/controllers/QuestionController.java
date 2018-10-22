@@ -61,4 +61,21 @@ public class QuestionController {
         questionService.addQuestion(question);
         return "question";
     }
+    
+    
+    @RequestMapping(value="/edit")
+    public String getEditPage(Model model){
+        model.addAttribute("moduleList", moduleService.findAll());
+        model.addAttribute("question", new Question());
+        model.addAttribute("questionList");
+        return "editquestion";
+    }
+    
+    @RequestMapping(value="/getAllQuestionForModule/{moduleId}")
+    public String getAllQuestionForModule(@PathVariable("moduleId") int moduleId,Model model){
+        model.addAttribute("moduleList", moduleService.findAll());
+        model.addAttribute("questionList",questionService.getAllQuestionByModule(moduleId));
+        model.addAttribute("question", new Question());
+        return "editquestion";
+    }
 }

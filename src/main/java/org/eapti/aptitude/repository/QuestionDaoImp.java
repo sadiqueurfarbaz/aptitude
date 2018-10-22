@@ -56,5 +56,15 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
        getSession().getTransaction().commit();
        return q;
     }
+
+    @Override
+    public List<Question> getAllQuestionByModule(int moduleId) {
+       getSession().beginTransaction();
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.eq("moduleId", moduleId));
+       List<Question> q=  criteria.list();
+       getSession().getTransaction().commit();
+       return q;
+    }
     
 }
