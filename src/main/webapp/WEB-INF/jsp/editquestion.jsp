@@ -45,7 +45,7 @@
               <c:if test="${not empty questionList}">
 
                 <c:forEach var="q" items="${questionList}">
-                  <tr class="">
+                  <tr>
                       <td> ${q.id}</td>
                     <td>${q.question}</td>
                     <td>${q.option1}</td>
