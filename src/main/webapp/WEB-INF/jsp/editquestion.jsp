@@ -31,9 +31,9 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th>Task ID</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
+                <th>Question ID</th>
+                <th> Question Text</th>
+                <th>Option 1</th>
               </tr>
             </thead>
             <tbody>
@@ -44,11 +44,11 @@
               </c:if>
               <c:if test="${not empty questionList}">
 
-                <c:forEach items="${questionList}" var="task">
+                <c:forEach var="q" items="${questionList}">
                   <tr class="">
-                    <td>${questionList.id}</td>
-                    <td>${questionList.question}</td>
-                    <td>${questionList.option1}</td>
+                      <td> ${q.id}</td>
+                    <td>${q.question}</td>
+                    <td>${q.option1}</td>
                   </tr>
                 </c:forEach>
               </c:if>
