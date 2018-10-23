@@ -34,7 +34,10 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
 
     @Override
     public boolean updateQuestion(Question question) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().beginTransaction();
+        super.update(question);
+        getSession().getTransaction().commit();
+        return true;
     }
 
     @Override
@@ -65,6 +68,14 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
        List<Question> q=  criteria.list();
        getSession().getTransaction().commit();
        return q;
+    }
+
+    @Override
+    public Question getQuestionById(int id) {
+        getSession().beginTransaction();
+        Question q= super.getByKey(id);
+        getSession().getTransaction().commit();
+        return q;
     }
     
 }

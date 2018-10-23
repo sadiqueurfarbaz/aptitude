@@ -15,6 +15,7 @@ import org.eapti.aptitude.models.Question;
 public interface QuestionDao {
     List<Question> findAll();
     boolean addQuestion(Question question);
+    Question getQuestionById(int id);
     boolean updateQuestion(Question question);
     boolean deleteQuestion(int questionId);
     Question getRandomQuestion();

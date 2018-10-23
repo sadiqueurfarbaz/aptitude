@@ -36,7 +36,8 @@ public class QuestionServiceImp implements QuestionService{
 
     @Override
     public boolean updateQuestion(Question question) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        questionDao.updateQuestion(question);
+        return true;
     }
 
     @Override
@@ -57,6 +58,11 @@ public class QuestionServiceImp implements QuestionService{
     @Override
     public List<Question> getAllQuestionByModule(int moduleId) {
         return questionDao.getAllQuestionByModule(moduleId);
+    }
+
+    @Override
+    public Question getQuestionById(int id) {
+      return questionDao.getQuestionById(id);
     }
     
 }

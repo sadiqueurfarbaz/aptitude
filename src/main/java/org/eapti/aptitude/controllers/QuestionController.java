@@ -62,6 +62,13 @@ public class QuestionController {
         return "question";
     }
     
+    @RequestMapping(value="/getEditQuestion/{questionId}")
+    public String getQuestion(@PathVariable("questionId") int questionId,Model model){
+       model.addAttribute("question", questionService.getQuestionById(questionId));
+       model.addAttribute("moduleList", moduleService.findAll());
+       model.addAttribute("questionId",questionId);
+       return "editmodaldialog";
+    }
     
     @RequestMapping(value="/edit")
     public String getEditPage(Model model){
@@ -71,6 +78,11 @@ public class QuestionController {
         return "editquestion";
     }
     
+    @RequestMapping(value="/edit/{questionId}")
+    public String editQuestion(@ModelAttribute("question") Question question,@PathVariable("questionId") int questionId){
+        questionService.updateQuestion(question);
+        return "redirect:/question/edit";
+    }
     @RequestMapping(value="/getAllQuestionForModule/{moduleId}")
     public String getAllQuestionForModule(@PathVariable("moduleId") int moduleId,Model model){
         model.addAttribute("moduleList", moduleService.findAll());

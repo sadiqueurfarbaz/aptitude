@@ -28,18 +28,19 @@
              </div>
             
         </form:form>
-        <table class="table table-striped">
+        <table class="table table-bordered table-responsive-md table-striped">
             <thead>
               <tr>
                 <th>Question ID</th>
                 <th> Question Text</th>
-                <th>Option 1</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               <c:if test="${empty questionList}">
                 <tr>
-                  <td colspan="8">No task to Display</td>
+                  <td colspan="8">No Questions to display</td>
                 </tr>
               </c:if>
               <c:if test="${not empty questionList}">
@@ -48,7 +49,8 @@
                   <tr>
                       <td> ${q.id}</td>
                     <td>${q.question}</td>
-                    <td>${q.option1}</td>
+                    <td><span class="table-remove"><button id="edit" onclick="parent.getQuestionForEdit('${q.id}')" type="button" class="btn btn-primary btn-rounded btn-sm my-0">Edit</button></span></td>
+                    <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span></td>
                   </tr>
                 </c:forEach>
               </c:if>
@@ -56,14 +58,17 @@
         </table>
     </div>
    </div> 
+    
+      
 </body>
         
         <script src="<c:url value="/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js" />" ></script>
-        <script src="<c:url value="resources/vendor/jquery/jquery-3.2.1.min.js" />" ></script>
+        <script src="<c:url value="/resources/vendor/jquery/jquery-3.2.1.min.js" />" ></script>
 <!--===============================================================================================-->
-        <script src="<c:url value="resources/vendor/animsition/js/animsition.min.js" />"></script>
+        <script src="<c:url value="/resources/vendor/animsition/js/animsition.min.js" />"></script>
 <!--===============================================================================================-->
-        <script src="<c:url value="resources/vendor/bootstrap/js/popper.js" />"></script>
-        <script src="<c:url value="resources/vendor/bootstrap/js/bootstrap.min.js" /> " ></script>
+        <script src="<c:url value="/resources/vendor/bootstrap/js/popper.js" />"></script>
+        <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.min.js" /> " ></script>
         <script src="<c:url value="/resources/js/utils.js" />" ></script>
+        
 </html>

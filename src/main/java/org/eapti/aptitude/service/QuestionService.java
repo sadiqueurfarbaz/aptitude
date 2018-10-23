@@ -20,4 +20,5 @@ public interface QuestionService {
     Question getRandomQuestion();
     Question getQuestionByModuleId(int moduleId);
      List<Question> getAllQuestionByModule(int moduleId);
+     Question getQuestionById(int id);
 }

@@ -1,5 +1,14 @@
 function homeOptionBtnClick(btn,params){
-    document.getElementById("homeIframe").src= btn.id;
+    if(typeof(params)==="undefined"){
+        document.getElementById("homeIframe").src= btn.id;
+    }
+
+}
+function editQuestion(id){
+    document.getElementById("homeIframe").src= 'question\\edit\\'+id;
+}
+function getQuestionForEdit(id){
+    document.getElementById("homeIframe").src= 'question\\getEditQuestion\\'+id;
 }
 $(function(){
         
