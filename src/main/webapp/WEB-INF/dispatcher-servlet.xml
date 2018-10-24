@@ -48,6 +48,7 @@
             <list>
 		<value>org.eapti.aptitude.models.Question</value>
                 <value>org.eapti.aptitude.models.Module</value>
+                <value>org.eapti.aptitude.models.User</value>
             </list>
          </property>
     </bean>

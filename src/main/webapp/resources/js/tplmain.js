@@ -10,6 +10,28 @@ function editQuestion(id){
 function getQuestionForEdit(id){
     document.getElementById("homeIframe").src= 'question\\getEditQuestion\\'+id;
 }
+function deleteQuestion(id){
+    document.getElementById("homeIframe").src= 'question\\delete\\'+id;
+}
+function checkAnswer(rightAnswer,chosenAnswer,e){
+   if(rightAnswer===chosenAnswer){
+        changeElementColorAndDisplayNext(e,'#57b846',true);
+   }
+   else{
+       changeElementColorAndDisplayNext(e,'tomato',false);
+   }
+}
+function changeElementColorAndDisplayNext(obj,color,displayNext)
+{
+   var orig = obj.style.backgroundColor;
+   obj.style.backgroundColor = color;
+   setTimeout(function(){
+        obj.style.backgroundColor = orig;
+        if(displayNext){
+            document.getElementById("homeIframe").src= "question/get";
+        }
+   }, 1000);
+}
 $(function(){
         
 	$('#slide-submenu').on('click',function() {			        

@@ -8,6 +8,9 @@ package org.eapti.aptitude.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.eapti.aptitude.models.Login;
+import org.eapti.aptitude.models.User;
+import org.eapti.aptitude.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,24 +26,36 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/login")
 public class LoginController {
     
+    
+    @Autowired
+    UserService userService;
     @RequestMapping(value="", method = RequestMethod.GET)
     public ModelAndView displayLogin(Model model){
-        String message="Welcome to login page";
         Login login= new Login();
         login.setUserType("USER");
         model.addAttribute("login", login);
-        return new ModelAndView("login","message",message);
+        return new ModelAndView("login","message","");
     }
     
     @RequestMapping(value={"/processLogin"},method= RequestMethod.POST)
-    public ModelAndView processLogin(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("login") Login login)
+    public ModelAndView processLogin(@ModelAttribute("login") Login login)
     {
-        ModelAndView mav=null;
-        if(login.getUserType().equals("ADMIN")){
-            return new ModelAndView("redirect:/adminhome");
+        ModelAndView mav;
+        User user=userService.getUserByUsername(login.getUsername());
+        if(user !=null && user.getPassword().equals(login.getPassword())){
+            if(login.getUserType().equals("ADMIN")){
+                mav=new ModelAndView("redirect:/adminhome");
+            }
+            else{
+                mav=new ModelAndView("redirect:/home","loginObj",login);
+            }
+            
         }
-        return new ModelAndView("redirect:/home","loginObj",login);
+        else{
+             mav=new ModelAndView("redirect:/login","message","Invalid Credentials");
+        }
+        
+        return mav;
         
     }
      @RequestMapping(value="/admin", method = RequestMethod.GET)
@@ -50,5 +65,24 @@ public class LoginController {
         login.setUserType("ADMIN");
         model.addAttribute("login", login);
         return new ModelAndView("login","message",message);
+    }
+    
+    @RequestMapping(value="/newuser",method=RequestMethod.GET)
+    public String getNewUserPage(Model model){
+        model.addAttribute("user", new User());
+        return "user";
+    }
+    
+    @RequestMapping(value="/newuser",method=RequestMethod.POST)
+    public String addNewUser(@ModelAttribute("user") User user){
+        user.setUsertype("USER");
+        userService.AddUser(user);
+        return "redirect:/login";
+    }
+    
+    @RequestMapping(value="/allusers",method=RequestMethod.GET)
+    public String viewAllUsers(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "viewusers";
     }
 }

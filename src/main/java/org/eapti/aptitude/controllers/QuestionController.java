@@ -5,7 +5,9 @@
  */
 package org.eapti.aptitude.controllers;
 
+import java.util.List;
 import java.util.Map;
+import org.eapti.aptitude.models.Module;
 import org.eapti.aptitude.models.Question;
 import org.eapti.aptitude.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class QuestionController {
              model.addAttribute("question", questionService.getQuestionByModuleId(moduleId));
         }
         else{
-            model.addAttribute("question", questionService.getQuestionByModuleId(1));
+            model.addAttribute("question", questionService.getQuestionByModuleId(2));
         }
         return "practice";
     }
@@ -53,6 +55,7 @@ public class QuestionController {
     public String getQuestion(Model model){
         model.addAttribute("moduleList", moduleService.findAll());
         model.addAttribute("question", new Question());
+        model.addAttribute("successMessage", "Question Added successfully.");
         return "question";
     }
     
@@ -72,7 +75,10 @@ public class QuestionController {
     
     @RequestMapping(value="/edit")
     public String getEditPage(Model model){
-        model.addAttribute("moduleList", moduleService.findAll());
+        
+        List<Module> moduleList=moduleService.findAll();
+        moduleList.add(0,new Module());
+        model.addAttribute("moduleList", moduleList);
         model.addAttribute("question", new Question());
         model.addAttribute("questionList");
         return "editquestion";
@@ -83,9 +89,18 @@ public class QuestionController {
         questionService.updateQuestion(question);
         return "redirect:/question/edit";
     }
+    
+    @RequestMapping(value="/delete/{questionId}")
+    public String deleteQuestion(@PathVariable("questionId") int questionId){
+        questionService.deleteQuestion(questionId);
+        return "redirect:/question/edit";
+    }
+    
     @RequestMapping(value="/getAllQuestionForModule/{moduleId}")
     public String getAllQuestionForModule(@PathVariable("moduleId") int moduleId,Model model){
-        model.addAttribute("moduleList", moduleService.findAll());
+         List<Module> moduleList=moduleService.findAll();
+        moduleList.add(0,new Module());
+        model.addAttribute("moduleList", moduleList);
         model.addAttribute("questionList",questionService.getAllQuestionByModule(moduleId));
         model.addAttribute("question", new Question());
         return "editquestion";

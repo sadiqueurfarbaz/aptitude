@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author Admin
+ * @param <PK>
+ * @param <T>
  */
 public abstract class Dao <PK extends Serializable, T>{
     @Autowired

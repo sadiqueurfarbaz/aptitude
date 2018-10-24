@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login  ${message}</title>
+	<title>Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -42,48 +42,50 @@
 			<div class="wrap-login100">
                             <div class="login100-form-title" style="background-image: url(<c:url value="/resources/images/bg-01.jpg)" />">
 					<span class="login100-form-title-1">
-						Sign In 
+						Register here
 					</span>
 				</div>
 
-                                    <form:form class="login100-form validate-form" id="loginForm" modelAttribute="login" action="${pageContext.request.contextPath}/login/processLogin" >
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-						<span class="label-input100">Username</span>
-						<form:input path="username" class="input100" type="text" name="username" placeholder="Enter username"/>
+                                    <form:form class="login100-form validate-form" id="loginForm" modelAttribute="user" action="${pageContext.request.contextPath}/login/newuser" >
+					<div class="wrap-input100 validate-input m-b-26" data-validate="First name">
+						<span class="label-input100">First Name</span>
+						<form:input path="firstname" class="input100" type="text" name="firstname" placeholder="Enter first name"/>
 						<span class="focus-input100"></span>
 					</div>
-
+                                        
+                                        <div class="wrap-input100 validate-input m-b-26" data-validate="Last name">
+						<span class="label-input100">Last Name</span>
+						<form:input path="lastname" class="input100" type="text" name="lastname" placeholder="Enter last name"/>
+						<span class="focus-input100"></span>
+					</div>
+                                        
+                                        <div class="wrap-input100 validate-input m-b-26" data-validate="Mobile number">
+						<span class="label-input100">Mobile</span>
+						<form:input path="mobile" class="input100" type="text" name="mobile" placeholder="Enter Mobile number"/>
+						<span class="focus-input100"></span>
+					</div>
+                                        
+                                        <div class="wrap-input100 validate-input m-b-26" data-validate="User name">
+						<span class="label-input100">Username</span>
+						<form:input path="username" class="input100" type="text" name="lastname" placeholder="Enter user name"/>
+						<span class="focus-input100"></span>
+					</div>
+                                        
+                                        
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<form:input path="password" class="input100" type="password" name="pass" placeholder="Enter password"/>
+						<form:input path="password" class="input100" type="password" name="password" placeholder="Enter password"/>
 						<span class="focus-input100"></span>
 					</div>
-                                        <form:hidden path="userType" />
-					<div class="flex-sb-m w-full p-b-30">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
+                                              
+					
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-                                        <h6>${message}</h6>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
-                                        <div style="margin-left: auto !important">
-						<a href="login/newuser" class="txt3">
-								Register here
-						</a>
-					</div>
+                                        
 				</form:form>
 			</div>
 		</div>

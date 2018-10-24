@@ -65,10 +65,8 @@
                                             <div class="admin-vertical-menu">
                                                 <a href="#" class="admin-vertical-menu-title">Home</a>
                                                 <a href="#" id="question" onclick="homeOptionBtnClick(this)">Add Question</a>
-                                                <a href="#" id="question\edit" onclick="homeOptionBtnClick(this)"">Edit Question</a>
-                                                <a href="#">Delete</a>
-                                                <a href="#">View Users</a>
-                                                <a href="#">View Test stats</a>
+                                                <a href="#" id="question\edit" onclick="homeOptionBtnClick(this)">Edit Question</a>
+                                                <a href="#" id="login\allusers" onclick="homeOptionBtnClick(this)">View Users</a>
                                                 <a href="#">Add new Module</a>
                                                 <a href="#">Edit module</a>
                                                 

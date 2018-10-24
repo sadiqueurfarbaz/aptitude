@@ -37,7 +37,8 @@ and open the template in the editor.
   padding: 0 20px;
   min-width: 160px;
   height: 60px;
-  background-color: #57b846;
+  background-color: #428bca;
+  border-color:#357ebd;
   border-radius: 10px;
 
   font-family: Poppins-Regular;
@@ -57,5 +58,5 @@ and open the template in the editor.
 }
 
 .question-optn-btn:hover {
-  background-color: #333333;
+  background-color: #f0ad4e;
 }

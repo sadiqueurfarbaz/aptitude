@@ -10,6 +10,7 @@ import org.eapti.aptitude.models.Question;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDao{
 
+    @Autowired
+    DaoHelper helper;
     @Override
     public List<Question> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -42,7 +45,10 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
 
     @Override
     public boolean deleteQuestion(int questionId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        getSession().beginTransaction();
+        super.delete(getByKey(questionId));
+        getSession().getTransaction().commit();
+        return true;
     }
 
     @Override
@@ -54,8 +60,11 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
     public Question getQuestionByModuleId(int moduleId) {
         getSession().beginTransaction();
        Criteria criteria = createEntityCriteria();
+       Question q=null;
        criteria.add(Restrictions.eq("moduleId", moduleId));
-       Question q= (Question) criteria.uniqueResult();
+       if(criteria.list().size()>0){
+           q= (Question) criteria.list().get(helper.getRandomPosition(criteria.list().size()));
+       }
        getSession().getTransaction().commit();
        return q;
     }

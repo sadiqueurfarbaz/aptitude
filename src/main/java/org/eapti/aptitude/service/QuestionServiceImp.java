@@ -42,7 +42,8 @@ public class QuestionServiceImp implements QuestionService{
 
     @Override
     public boolean deleteQuestion(int questionId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        questionDao.deleteQuestion(questionId);
+        return true;
     }
 
     @Override

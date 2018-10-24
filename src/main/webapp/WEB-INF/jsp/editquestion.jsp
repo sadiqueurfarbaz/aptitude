@@ -50,7 +50,7 @@
                       <td> ${q.id}</td>
                     <td>${q.question}</td>
                     <td><span class="table-remove"><button id="edit" onclick="parent.getQuestionForEdit('${q.id}')" type="button" class="btn btn-primary btn-rounded btn-sm my-0">Edit</button></span></td>
-                    <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span></td>
+                    <td><span class="table-remove"><button type="button" onclick="parent.deleteQuestion('${q.id}')" class="btn btn-danger btn-rounded btn-sm my-0">Delete</button></span></td>
                   </tr>
                 </c:forEach>
               </c:if>

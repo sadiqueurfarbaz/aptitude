@@ -28,12 +28,12 @@
                     <div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <button class="question-optn-btn">
+                                <button class="question-optn-btn" onclick="parent.checkAnswer('${question.correctAnswer}','${question.option1}',this)">
 					${question.option1}
 				</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="question-optn-btn">
+                                <button class="question-optn-btn" onclick="parent.checkAnswer('${question.correctAnswer}','${question.option2}',this)">
 					${question.option2}
 				</button>
                             </div>
@@ -42,12 +42,12 @@
                         
                          <div class="row">
                             <div class="col-sm-6">
-                                <button class="question-optn-btn">
+                                <button class="question-optn-btn" onclick="parent.checkAnswer('${question.correctAnswer}','${question.option3}',this)">
 					${question.option3}
 				</button>
                             </div>
                             <div class="col-sm-6">
-                                <button class="question-optn-btn">
+                                <button class="question-optn-btn" onclick="parent.checkAnswer('${question.correctAnswer}','${question.option4}',this)">
 					${question.option4}
 				</button>
                             </div>
