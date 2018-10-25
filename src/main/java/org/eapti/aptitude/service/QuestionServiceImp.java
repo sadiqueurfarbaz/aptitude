@@ -65,5 +65,18 @@ public class QuestionServiceImp implements QuestionService{
     public Question getQuestionById(int id) {
       return questionDao.getQuestionById(id);
     }
+
+    @Override
+    public Question getQuestionForTest() {
+       return questionDao.getQuestionForTest();
+    }
+
+    @Override
+    public boolean checkAnswer(int questionId, String chosenAnswer) {
+        Question q=questionDao.getQuestionById(questionId);
+        
+        return q.getCorrectAnswer().equalsIgnoreCase(chosenAnswer);
+        
+    }
     
 }

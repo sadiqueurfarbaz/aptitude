@@ -29,7 +29,7 @@
            </div>
             <div class="col-sm-6 text-center">
                     <div class="col-content">
-                        <button class="home-optn-btn col-btn-align">
+                        <button class="home-optn-btn col-btn-align" id="question\getTestQuestion" onclick="parent.homeOptionBtnClick(this)">
                             Take a Test
                         </button>
                     </div>

@@ -32,6 +32,9 @@ function changeElementColorAndDisplayNext(obj,color,displayNext)
         }
    }, 1000);
 }
+function checkTestAnswer(obj,chosenAnswer,questionId){
+    document.getElementById("homeIframe").src = "question/getTestQuestion?questionId="+questionId+"&chosenAnswer="+chosenAnswer;
+}
 $(function(){
         
 	$('#slide-submenu').on('click',function() {			        

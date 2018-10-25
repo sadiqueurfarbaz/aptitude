@@ -5,10 +5,19 @@
  */
 package org.eapti.aptitude.controllers;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import javax.print.attribute.standard.DateTimeAtCompleted;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.lang3.StringUtils;
 import org.eapti.aptitude.models.Module;
 import org.eapti.aptitude.models.Question;
+import org.eapti.aptitude.models.Result;
 import org.eapti.aptitude.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.eapti.aptitude.service.QuestionService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -33,6 +43,9 @@ public class QuestionController {
     @Autowired
     private ModuleService moduleService;
     
+    
+    @Autowired
+    HttpSession session;
     /**
      *
      * @param pathVariablesMap
@@ -104,5 +117,77 @@ public class QuestionController {
         model.addAttribute("questionList",questionService.getAllQuestionByModule(moduleId));
         model.addAttribute("question", new Question());
         return "editquestion";
+    }
+    
+    @RequestMapping(value="/getTestQuestion")
+    public String getTestQuestion(Model model,@RequestParam(value="chosenAnswer",required=false) String chosenAnswer ,
+            @RequestParam(value="questionId",required=false) String questionId){
+        
+        Object count= session.getAttribute("questionCount");
+        
+        if(count !=null){
+            int questionCount = Integer.parseInt(session.getAttribute("questionCount").toString());
+            
+            
+            if(questionCount==10){
+                //When User has completed 10 Questions redirect hime to result page
+                session.setAttribute("finishTime",getCurrentDateAndTime());
+                return "redirect:/question/showTestResult";
+                
+            }
+            else if(StringUtils.isNotBlank(questionId) && StringUtils.isNotBlank(chosenAnswer) ){
+                
+                // User has started the test 
+                boolean result = questionService.checkAnswer(Integer.parseInt(questionId),chosenAnswer);
+                int correctAnswers=(Integer) session.getAttribute("correctAnswers");
+                int wrongAnswers=(Integer) session.getAttribute("wrongAnswers");
+                if(result){
+                    correctAnswers++;
+                }
+                else{
+                    wrongAnswers++;
+                }
+                session.setAttribute("correctAnswers", correctAnswers);
+                session.setAttribute("wrongAnswers",wrongAnswers);
+                questionCount++;
+                session.setAttribute("questionCount", questionCount);
+                model.addAttribute("question",questionService.getQuestionForTest());
+            }
+        }
+        else
+        {
+            // Initialize session for new User
+            session.setAttribute("questionCount", 0);
+            session.setAttribute("correctAnswers", 0);
+            session.setAttribute("wrongAnswers", 0);
+            session.setAttribute("StartTime", getCurrentDateAndTime());
+            model.addAttribute("question",questionService.getQuestionForTest());
+        } 
+        return "test";
+    }
+    
+    @RequestMapping(value="/showTestResult")
+    public String showTestResult(Model model){
+       Result result= constructResultObject();
+       model.addAttribute("result", result);
+       model.addAttribute("fullname", (String)session.getAttribute("fullName"));
+       return "result";
+    }
+    
+    public String getCurrentDateAndTime(){
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date d= new Date();
+        return dateFormat.format(d);
+    }
+    
+    private Result constructResultObject(){
+        Result r= new Result();
+        r.setUsername((String)session.getAttribute("username"));
+        r.setQuestionAnswered((Integer)session.getAttribute("questionCount"));
+        r.setCorrectlyAnswered((Integer)session.getAttribute("correctAnswers"));
+        r.setWronglyAnswered((Integer)session.getAttribute("wrongAnswers"));
+        r.setStartDateAndTime((String)session.getAttribute("StartTime"));
+        r.setFinishDateAndTime((String)session.getAttribute("finishTime"));
+        return r;
     }
 }

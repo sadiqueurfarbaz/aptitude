@@ -7,10 +7,12 @@ package org.eapti.aptitude.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.eapti.aptitude.models.Login;
 import org.eapti.aptitude.models.User;
 import org.eapti.aptitude.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +31,10 @@ public class LoginController {
     
     @Autowired
     UserService userService;
+    
+    @Autowired
+    HttpSession session;
+    
     @RequestMapping(value="", method = RequestMethod.GET)
     public ModelAndView displayLogin(Model model){
         Login login= new Login();
@@ -47,6 +53,8 @@ public class LoginController {
                 mav=new ModelAndView("redirect:/adminhome");
             }
             else{
+                session.setAttribute("username", login.getUsername());
+                session.setAttribute("fullName",user.getFirstname() + " "+user.getLastname());
                 mav=new ModelAndView("redirect:/home","loginObj",login);
             }
             

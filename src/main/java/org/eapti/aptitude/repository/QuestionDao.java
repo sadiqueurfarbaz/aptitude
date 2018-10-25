@@ -21,5 +21,6 @@ public interface QuestionDao {
     Question getRandomQuestion();
     Question getQuestionByModuleId(int moduleId);
     List<Question> getAllQuestionByModule(int moduleId);
+    Question getQuestionForTest();
     
 }

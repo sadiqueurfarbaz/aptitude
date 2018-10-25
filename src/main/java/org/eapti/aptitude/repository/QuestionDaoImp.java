@@ -86,5 +86,17 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
         getSession().getTransaction().commit();
         return q;
     }
+
+    @Override
+    public Question getQuestionForTest() {
+       getSession().beginTransaction();
+       int pos=helper.getRandomPosition(super.findAll().size());
+       if(pos==0){
+           pos=1;
+       }
+       Question q = super.getByKey(pos);
+       getSession().getTransaction().commit();
+       return q;
+    }
     
 }

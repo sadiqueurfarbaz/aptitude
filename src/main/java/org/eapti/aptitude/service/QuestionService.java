@@ -19,6 +19,9 @@ public interface QuestionService {
     boolean deleteQuestion(int questionId);
     Question getRandomQuestion();
     Question getQuestionByModuleId(int moduleId);
-     List<Question> getAllQuestionByModule(int moduleId);
-     Question getQuestionById(int id);
+    List<Question> getAllQuestionByModule(int moduleId);
+    Question getQuestionById(int id);
+    Question getQuestionForTest(); 
+    
+    boolean checkAnswer(int questionId,String chosenAnswer);
 }

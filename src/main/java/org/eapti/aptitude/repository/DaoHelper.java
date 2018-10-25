@@ -17,7 +17,7 @@ public class DaoHelper {
     int getRandomPosition(int length){
         Random random = new Random();
         int rand= 0+random.nextInt(length);
-        return rand>0 ? rand : 1;
+        return rand;
     }
     
 }
