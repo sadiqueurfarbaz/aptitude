@@ -68,11 +68,10 @@ public class LoginController {
     }
      @RequestMapping(value="/admin", method = RequestMethod.GET)
     public ModelAndView displayAdminLogin(Model model){
-        String message="Welcome to login page";
         Login login= new Login();
         login.setUserType("ADMIN");
         model.addAttribute("login", login);
-        return new ModelAndView("login","message",message);
+        return new ModelAndView("login","message","");
     }
     
     @RequestMapping(value="/newuser",method=RequestMethod.GET)

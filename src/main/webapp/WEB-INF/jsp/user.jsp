@@ -59,7 +59,7 @@
 						<span class="focus-input100"></span>
 					</div>
                                         
-                                        <div class="wrap-input100 validate-input m-b-26" data-validate="Mobile number">
+                                        <div class="wrap-input100 validate-input m-b-26" data-validate="Mobile number is invalid">
 						<span class="label-input100">Mobile</span>
 						<form:input path="mobile" class="input100" type="text" name="mobile" placeholder="Enter Mobile number"/>
 						<span class="focus-input100"></span>
@@ -67,7 +67,7 @@
                                         
                                         <div class="wrap-input100 validate-input m-b-26" data-validate="User name">
 						<span class="label-input100">Username</span>
-						<form:input path="username" class="input100" type="text" name="lastname" placeholder="Enter user name"/>
+						<form:input path="username" class="input100" type="email" name="username" placeholder="Enter user name"/>
 						<span class="focus-input100"></span>
 					</div>
                                         

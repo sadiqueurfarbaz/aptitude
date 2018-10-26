@@ -19,12 +19,13 @@ and open the template in the editor.
   height: 100%;
 }
 .practice-container-main .row{
-   padding-top:10px;
+   padding-top:20px;
    width: -webkit-fill-available
     
 }
 .practice-container-main .jumbotron{
-    width: -webkit-fill-available
+    width: -webkit-fill-available;
+    height:250px;
 }
 .question-optn-btn {
   display: -webkit-box;
@@ -35,12 +36,15 @@ and open the template in the editor.
   justify-content: center;
   align-items: center;
   padding: 0 20px;
-  min-width: 160px;
-  height: 60px;
+  min-width: 100%;
+  height: 80px;
   background-color: #428bca;
   border-color:#357ebd;
   border-radius: 10px;
 
+  margin-left: auto;
+  margin-right: auto;
+    
   font-family: Poppins-Regular;
   font-size: 16px;
   color: #fff;

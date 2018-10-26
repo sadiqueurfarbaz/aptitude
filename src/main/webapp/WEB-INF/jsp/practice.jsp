@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col">
                     <div class="row">
-                        <div class="jumbotron">
+                        <div class="jumbotron lead">
                             ${question.question}
                         </div>
                     </div>

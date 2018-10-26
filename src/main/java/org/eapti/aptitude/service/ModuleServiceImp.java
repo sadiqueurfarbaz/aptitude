@@ -37,7 +37,8 @@ public class ModuleServiceImp implements ModuleService{
 
     @Override
     public boolean addModule(Module module) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       moduleDao.addModule(module);
+       return true;
     }
 
    

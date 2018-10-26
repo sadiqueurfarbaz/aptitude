@@ -20,8 +20,8 @@ import javax.persistence.Table;
 @Table(name="module")
 public class Module {
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     @Column(name="name")

@@ -95,6 +95,11 @@ $(function(){
                 return false;
             }
         }
+        else if($(input).attr('name') == 'mobile') {
+            if($(input).val().length !== 10 || $(input).val().trim().match(/^[6-9]\d{9}$/) == null){
+                return false;
+            }
+        }
         else {
             if($(input).val().trim() == ''){
                 return false;

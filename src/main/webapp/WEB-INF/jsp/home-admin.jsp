@@ -67,7 +67,7 @@
                                                 <a href="#" id="question" onclick="homeOptionBtnClick(this)">Add Question</a>
                                                 <a href="#" id="question\edit" onclick="homeOptionBtnClick(this)">Edit Question</a>
                                                 <a href="#" id="login\allusers" onclick="homeOptionBtnClick(this)">View Users</a>
-                                                <a href="#">Add new Module</a>
+                                                <a href="#" id="module\add" onclick="homeOptionBtnClick(this)">Add new Module</a>
                                                 <a href="#">Edit module</a>
                                                 
                                               </div>

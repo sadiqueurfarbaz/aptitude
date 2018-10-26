@@ -20,7 +20,7 @@
 <body >
    <div id="scroller">
     <div id="form" class="container-fluid">
-        <form:form class="validate-form" modelAttribute="question" action="${pageContext.request.contextPath}/question/add">
+        <form:form class="validate-form" id="addquestionform" modelAttribute="question" action="${pageContext.request.contextPath}/question/add">
             <div class="form-group col-sm-8" style="padding-left: inherit;">
                 <label for="moduleId">Module</label>
                 <form:select path="moduleId" items="${moduleList}" class="form-control" id="module" itemLabel="name" itemValue="id">
@@ -33,9 +33,10 @@
             </div>
             
             <div class="row ">
-               <div class="form-group col-sm-6">
-                   <label for="option1">Option 1</label>
-                   <form:input type="text" path="option1" class="form-control" id="option1"/>
+               <div class="form-group col-sm-6 validate-input m-b-26" data-validate="Option 1">
+                   <label>Option 1</label>
+                   <form:input type="text" path="option1" class="form-control validate-input" id="option1"/>
+                   <span class="focus-input100"></span>
                </div>
                <div class="form-group col-sm-6">
                    <label for="option2">Option 2</label>

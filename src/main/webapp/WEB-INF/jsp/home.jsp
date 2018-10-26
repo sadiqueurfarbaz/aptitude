@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home  ${message}</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -47,7 +47,7 @@
                         <div class="wrap-home">
                             <div class="home-form-banner" style="background-image: url(resources/images/bg-01.jpg);">
 					<span class="home-form-title-1">
-						Home Page
+						E-Apti Test
 					</span>
                                 <div class="container-fluid">
                                 <div class="row" style="position: absolute">
@@ -91,15 +91,13 @@
                                </div>
                               </div>
                             </div>
-                            <div class="container-fluid">    
-                                <div class="home-body">
-                                    <div class="row home-row-eq-height shadow-lg">
-                                        <div class="col-sm-8 col-md-9">
+                            <div class="container-fluid" style="height:80%">    
+                                <div class="home-body" style="height:100%">
+                                    <div class="row-fluid" style="height:100%">
                                             <div class="home-iframe-div">
                                                 <iframe id="homeIframe" src="homeoptions"></iframe>
                                             </div>
-                                        </div>
-
+                                        <!--
                                         <div class="col-sm-4 col-md-3">
                                             <div class="home-top-user-div">
                                                 <h4>Top Users</h4>
@@ -124,9 +122,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        -->
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                 </div>
         </div>

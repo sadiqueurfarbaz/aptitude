@@ -28,8 +28,12 @@ public class ModuleDaoImp extends Dao<Integer, Module> implements ModuleDao {
     }
 
     @Override
-    public boolean addModule(Module question) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addModule(Module module) {
+        getSession().beginTransaction();
+        persist(module);
+        getSession().getTransaction().commit();
+        
+        return true;
     }
     
 }
