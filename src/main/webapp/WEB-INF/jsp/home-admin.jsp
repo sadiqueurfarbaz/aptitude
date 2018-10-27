@@ -48,7 +48,7 @@
                         <div class="wrap-home">
                             <div class="home-form-banner" style="background-image: url(resources/images/bg-01.jpg);">
 					<span class="home-form-title-1">
-						Home Page
+						Admin Home
 					</span>
                                 
                             </div>

@@ -66,7 +66,9 @@ public class QuestionController {
     
     @RequestMapping(value="",method=RequestMethod.GET)
     public String getQuestion(Model model){
-        model.addAttribute("moduleList", moduleService.findAll());
+        List<Module> moduleList=moduleService.findAll();
+        moduleList.add(0,new Module());
+        model.addAttribute("moduleList", moduleList);
         model.addAttribute("question", new Question());
         model.addAttribute("successMessage", "Question Added successfully.");
         return "question";
@@ -169,6 +171,11 @@ public class QuestionController {
     @RequestMapping(value="/showTestResult")
     public String showTestResult(Model model){
        Result result= constructResultObject();
+       session.removeAttribute("questionCount");
+       session.removeAttribute("correctAnswers");
+       session.removeAttribute("wrongAnswers");
+        session.removeAttribute("finishTime");
+       session.removeAttribute("StartTime");
        model.addAttribute("result", result);
        model.addAttribute("fullname", (String)session.getAttribute("fullName"));
        return "result";

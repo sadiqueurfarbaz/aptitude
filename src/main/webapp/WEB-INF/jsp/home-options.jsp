@@ -3,15 +3,15 @@
     Created on : Sep 25, 2018, 8:53:09 PM
     Author     : Admin
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/main.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/home-options.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/util.css" /> " >
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css" /> ">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/home-options.css" />">
 </head>
 <body>
        
@@ -41,11 +41,11 @@
     </div>
 </body>
 
-	<script src="resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.2.1.min.js" /> "></script>
 <!--===============================================================================================-->
-	<script src="resources/vendor/animsition/js/animsition.min.js"></script>
+<script src="<c:url value="/resources/vendor/animsition/js/animsition.min.js" />"></script>
 <!--===============================================================================================-->
-	<script src="resources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/vendor/bootstrap/js/popper.js" />"></script>
+<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.min.js" />"></script>
 </html>
         

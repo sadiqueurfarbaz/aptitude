@@ -9,6 +9,7 @@
     Created on : Sep 21, 2018, 8:45:13 PM
     Author     : Admin
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="resources/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css" />">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
@@ -36,8 +37,10 @@
 <!--===============================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="resources/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/css/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/main.css">
+  
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/util.css" /> " >
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/main.css" /> ">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/home-options.css" />">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -63,29 +66,19 @@
                                     </div>
                                     <div class="list-group" style="display:none;margin-top:50px;">
                                         <span href="#" class="list-group-item active" style="border:none;background-color: #57b846">
-                                            Submenu
+                                            Modules
                                             <span class="pull-right" id="slide-submenu">
                                                 <i class="fa fa-times"></i>
                                             </span>
                                         </span>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-comment-o"></i> Lorem ipsum
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-search"></i> Lorem ipsum
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-user"></i> Lorem ipsum
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-folder-open-o"></i> Lorem ipsum <span class="badge">14</span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-bar-chart-o"></i> Lorem ipsumr <span class="badge">14</span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="fa fa-envelope"></i> Lorem ipsum
-                                        </a>
+                                        <c:if test="${not empty moduleList}">
+
+                                        <c:forEach var="q" items="${moduleList}">
+                                          <a href="#" class="list-group-item" id="question/get/${q.id}" onclick="parent.homeModuleOptionClicked(this,'${q.id}')">
+                                            <i class="fa fa-comment-o"></i> ${q.name}
+                                           </a>
+                                        </c:forEach>
+                                      </c:if>
                                     </div>        
                                 </div>
                                </div>
@@ -133,12 +126,12 @@
 </body>
 	
 <!--===============================================================================================-->
-	<script src="resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="<c:url value="/resources/vendor/jquery/jquery-3.2.1.min.js" /> "></script>
 <!--===============================================================================================-->
-	<script src="resources/vendor/animsition/js/animsition.min.js"></script>
+<script src="<c:url value="/resources/vendor/animsition/js/animsition.min.js" />"></script>
 <!--===============================================================================================-->
-	<script src="resources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/vendor/bootstrap/js/popper.js" />"></script>
+<script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.min.js" />"></script>
 <!--===============================================================================================-->
 	<script src="resources/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
@@ -147,6 +140,6 @@
 <!--===============================================================================================-->
 	<script src="resources/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="resources/js/tplmain.js"></script>
+<script src="<c:url value="/resources/js/tplmain.js" />"></script>
 
 </html>

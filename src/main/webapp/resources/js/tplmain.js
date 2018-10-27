@@ -1,4 +1,8 @@
+var selectedModuleId=0;
 function homeOptionBtnClick(btn,params){
+    if(btn.id==="question/get"){
+        selectedModuleId=0;
+    }
     if(typeof(params)==="undefined"){
         document.getElementById("homeIframe").src= btn.id;
     }
@@ -28,12 +32,22 @@ function changeElementColorAndDisplayNext(obj,color,displayNext)
    setTimeout(function(){
         obj.style.backgroundColor = orig;
         if(displayNext){
-            document.getElementById("homeIframe").src= "question/get";
+            var url="question/get";
+            if(selectedModuleId!==0){
+                url=url+'/'+selectedModuleId;
+            }
+            document.getElementById("homeIframe").src= url;
         }
    }, 1000);
 }
 function checkTestAnswer(obj,chosenAnswer,questionId){
     document.getElementById("homeIframe").src = "question/getTestQuestion?questionId="+questionId+"&chosenAnswer="+chosenAnswer;
+}
+
+function homeModuleOptionClicked(e,id){
+    selectedModuleId=id;
+    homeOptionBtnClick(e);
+    
 }
 $(function(){
         
