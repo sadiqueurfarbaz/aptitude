@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Admin
  */
 @Service
+@Transactional
 public class ModuleServiceImp implements ModuleService{
 
     @Autowired

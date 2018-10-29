@@ -86,6 +86,9 @@
                                </div>
                               </div>
                             </div>
+                              <a href="<c:url value="/login/logout" />" class="logout-float" title="Logout">
+                                 <img src="<c:url value="/resources/images/icons/logout.ico" />" class="my-float"/>
+                             </a>
                             <div class="container-fluid" style="height:80%">    
                                 <div class="home-body" style="height:100%">
                                     <div class="row-fluid" style="height:100%">

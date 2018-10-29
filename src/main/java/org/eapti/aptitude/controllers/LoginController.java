@@ -92,4 +92,10 @@ public class LoginController {
         model.addAttribute("users", userService.findAll());
         return "viewusers";
     }
+    
+    @RequestMapping(value="/logout")
+    public String logout(){
+        session.invalidate();
+        return "redirect:/login";
+    }
 }

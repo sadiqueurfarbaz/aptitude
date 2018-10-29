@@ -5,6 +5,7 @@
  */
 package org.eapti.aptitude.controllers;
 
+import javax.servlet.http.HttpSession;
 import org.eapti.aptitude.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,15 @@ public class HomeController {
     @Autowired
     ModuleService moduleService;
     
+    @Autowired
+    HttpSession session;
+    
     @RequestMapping(value="/home" , method=RequestMethod.GET)
     public ModelAndView showHomePage(Model model){
+        if(session.getAttribute("username")==null){
+            return new ModelAndView("redirect:/login","error","LoginError");
+        }
+        
         model.addAttribute("moduleList", moduleService.findAll());
         return new ModelAndView("home","objectKey","objectValue");
     }

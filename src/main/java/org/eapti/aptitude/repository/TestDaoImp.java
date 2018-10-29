@@ -18,16 +18,12 @@ public class TestDaoImp extends Dao<Integer,Test> implements TestDao {
 
     @Override
     public void addTest(Test test) {
-        getSession().beginTransaction();
         persist(test);
-        getSession().getTransaction().commit();
         
     }
      @Override
     public List<Test> findAll() {
-        getSession().beginTransaction();
         List<Test> allTests= super.findAll();
-        getSession().getTransaction().commit();
         return allTests;
     }
 }

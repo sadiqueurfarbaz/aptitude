@@ -133,7 +133,7 @@ public class QuestionController {
         
         Object count= session.getAttribute("questionCount");
         
-        if(count==(Object)0 && StringUtils.isBlank(questionId)){
+        if(StringUtils.isBlank(questionId)){
             count=null;
         }
         

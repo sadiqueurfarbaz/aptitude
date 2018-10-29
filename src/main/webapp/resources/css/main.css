@@ -755,3 +755,20 @@ iframe{
   justify-content: space-between;
     
 }
+.logout-float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	top:40px;
+	right:40px;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #272626;
+        z-index:1;
+}
+
+.my-float{
+        width:60px;
+	height:60px;
+}

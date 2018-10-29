@@ -20,25 +20,22 @@ public class UserDaoImp extends Dao<Integer, User> implements UserDao {
 
     @Override
     public void AddUser(User user) {
-        getSession().beginTransaction();
         super.persist(user);
-        getSession().getTransaction().commit();
     }
 
     @Override
     public User getUserByUsername(String username) {
-       getSession().beginTransaction();
+       User user;
        Criteria criteria=createEntityCriteria();
        criteria.add(Restrictions.eq("username", username));
-       return (User)criteria.uniqueResult();
+       user=(User)criteria.uniqueResult();
+       return user;
     }
 
     @Override
     public List<User> findAll() {
        List<User> users=null;
-       getSession().beginTransaction();
        users= super.findAll();
-       getSession().getTransaction().commit();
        return users;
     }
     
