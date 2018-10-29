@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.eapti.aptitude.models.Module;
 import org.eapti.aptitude.models.Question;
 import org.eapti.aptitude.models.Result;
+import org.eapti.aptitude.models.Test;
 import org.eapti.aptitude.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.eapti.aptitude.service.QuestionService;
+import org.eapti.aptitude.service.TestService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +44,9 @@ public class QuestionController {
     
     @Autowired
     private ModuleService moduleService;
+    
+    @Autowired
+    private TestService testService;
     
     
     @Autowired
@@ -116,6 +121,7 @@ public class QuestionController {
          List<Module> moduleList=moduleService.findAll();
         moduleList.add(0,new Module());
         model.addAttribute("moduleList", moduleList);
+        if(moduleId!=0)
         model.addAttribute("questionList",questionService.getAllQuestionByModule(moduleId));
         model.addAttribute("question", new Question());
         return "editquestion";
@@ -126,6 +132,10 @@ public class QuestionController {
             @RequestParam(value="questionId",required=false) String questionId){
         
         Object count= session.getAttribute("questionCount");
+        
+        if(count==(Object)0 && StringUtils.isBlank(questionId)){
+            count=null;
+        }
         
         if(count !=null){
             int questionCount = Integer.parseInt(session.getAttribute("questionCount").toString());
@@ -159,11 +169,12 @@ public class QuestionController {
         else
         {
             // Initialize session for new User
+            
+            model.addAttribute("question",questionService.getQuestionForTest());
             session.setAttribute("questionCount", 0);
             session.setAttribute("correctAnswers", 0);
             session.setAttribute("wrongAnswers", 0);
             session.setAttribute("StartTime", getCurrentDateAndTime());
-            model.addAttribute("question",questionService.getQuestionForTest());
         } 
         return "test";
     }
@@ -176,6 +187,7 @@ public class QuestionController {
        session.removeAttribute("wrongAnswers");
         session.removeAttribute("finishTime");
        session.removeAttribute("StartTime");
+       persistResult(result);
        model.addAttribute("result", result);
        model.addAttribute("fullname", (String)session.getAttribute("fullName"));
        return "result";
@@ -196,5 +208,18 @@ public class QuestionController {
         r.setStartDateAndTime((String)session.getAttribute("StartTime"));
         r.setFinishDateAndTime((String)session.getAttribute("finishTime"));
         return r;
+    }
+    
+    private void persistResult(Result r){
+        Test t=new Test();
+        t.setUsername(r.getUsername());
+        t.setFullname((String)session.getAttribute("fullName"));
+        t.setStartTime(r.getStartDateAndTime());
+        t.setFinishTime(r.getFinishDateAndTime());
+        t.setQuestionAttempted(r.getQuestionAnswered());
+        t.setCorrectAnswer(r.getCorrectlyAnswered());
+        t.setWrongAnswer(r.getWronglyAnswered());
+        
+        testService.addTest(t);
     }
 }

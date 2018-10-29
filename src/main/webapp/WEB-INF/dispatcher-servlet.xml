@@ -39,7 +39,7 @@
         <property name="hibernateProperties">
 		<props>
                     <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                    <prop key="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</prop>
+                    <prop key="hibernate.current_session_context_class">thread</prop>
                     <prop key="hibernate.show_sql">true</prop>
 		</props>
         </property>
@@ -49,6 +49,7 @@
 		<value>org.eapti.aptitude.models.Question</value>
                 <value>org.eapti.aptitude.models.Module</value>
                 <value>org.eapti.aptitude.models.User</value>
+                 <value>org.eapti.aptitude.models.Test</value>
             </list>
          </property>
     </bean>

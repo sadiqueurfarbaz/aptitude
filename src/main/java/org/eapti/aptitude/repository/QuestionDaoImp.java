@@ -90,11 +90,10 @@ public class QuestionDaoImp extends Dao<Integer, Question> implements QuestionDa
     @Override
     public Question getQuestionForTest() {
        getSession().beginTransaction();
-       int pos=helper.getRandomPosition(super.findAll().size());
-       if(pos==0){
-           pos=1;
-       }
-       Question q = super.getByKey(pos);
+       List<Question> allQuestions=super.findAll();
+       int pos=helper.getRandomPosition(allQuestions.size());
+       
+       Question q = allQuestions.get(pos);
        getSession().getTransaction().commit();
        return q;
     }

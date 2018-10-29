@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Propagation;
  * @author Admin
  */
 @Service
-@Transactional(value = "transactionManager", propagation = Propagation.REQUIRED, readOnly = true)
 public class QuestionServiceImp implements QuestionService{
 
     @Autowired

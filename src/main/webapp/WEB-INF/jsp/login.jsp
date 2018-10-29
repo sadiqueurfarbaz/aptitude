@@ -68,8 +68,8 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
+                                                    <a href="<c:url value="/login/admin" />" class="txt1">
+								Login as Admin
 							</a>
 						</div>
 					</div>

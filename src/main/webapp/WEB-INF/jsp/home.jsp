@@ -49,9 +49,11 @@
 		<div class="container-home-top">
                         <div class="wrap-home">
                             <div class="home-form-banner" style="background-image: url(resources/images/bg-01.jpg);">
-					<span class="home-form-title-1">
-						E-Apti Test
-					</span>
+                                    <a  href="<c:url value="/home"/>">		
+                                        <span class="home-form-title-1">
+                                                  E-Apti Test 
+                                            </span>
+                                    </a>
                                 <div class="container-fluid">
                                 <div class="row" style="position: absolute">
                                 <div class="col-sm-4 col-md-3 sidebar" style="display:contents">
