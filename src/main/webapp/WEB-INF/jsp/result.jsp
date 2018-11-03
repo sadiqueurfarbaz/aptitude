@@ -18,7 +18,7 @@
             <div class="panel-body inf-content">
                 <div class="row">
                     <div class="col-md-4">
-                        <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="<c:url value="/resources/images/default-user-male.png" />" data-original-title="Usuario"> 
+                        <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="<c:out value="${result.correctlyAnswered ge 6 ? '/Aptitude/resources/images/default-user-male.png': '/Aptitude/resources/images/sad.png'}"/>" data-original-title="Usuario"> 
                         <ul title="Ratings" class="list-inline ratings text-center">
                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
@@ -32,6 +32,16 @@
                         <div class="table-responsive">
                         <table class="table table-condensed table-responsive table-user-information">
                             <tbody>
+                                <c:if test="${result.correctlyAnswered ge 6 }">
+                                    <tr>
+                                        <strong style="color:#57b846">Congratulations! you are pass.</strong>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${result.correctlyAnswered le 5 }">
+                                    <tr>
+                                        <strong style="color:tomato">Oops! you are fail. </strong>
+                                    </tr>
+                                  </c:if>
                                 <tr>        
                                     <td>
                                         <strong>
